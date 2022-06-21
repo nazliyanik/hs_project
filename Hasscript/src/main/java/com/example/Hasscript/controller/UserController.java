@@ -16,16 +16,7 @@ public class UserController {
     @Autowired
     UserRepository userRepository;
 
-    @PostMapping("/user/create")
-    public ResponseEntity<User> createUser(@RequestBody User user) {
-        try {
-            User _user = userRepository
-                    .save(new User(user.getName(), user.getSurname()));
-            return new ResponseEntity<>(_user, HttpStatus.CREATED);
-        } catch (Exception e) {
-            return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
-        }
-    }
+
     @GetMapping("/user/getAll")
     public ResponseEntity<List<User>> getAllUsers() {
         try {
