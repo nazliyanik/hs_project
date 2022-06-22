@@ -1,9 +1,10 @@
 package com.example.Hasscript.model;
 
 import javax.persistence.*;
+import java.util.Set;
 
 @Entity
-@Table(name = "hospitals")
+@Table(name = "hospital")
 public class Hospital {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -14,6 +15,13 @@ public class Hospital {
     private String email;
     @Column(name = "phoneNumber")
     private String phoneNumber;
+
+    @OneToMany (mappedBy = "hospital")
+    private Set<Department> department;
+
+    @ManyToOne
+    @JoinColumn(name="city_id")
+    private City city;
 
     public Hospital() {
     }
