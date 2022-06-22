@@ -5,7 +5,6 @@ import javax.persistence.*;
 @Entity
 @Table(name = "users")
 public class User {
-
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long Id;
@@ -30,13 +29,14 @@ public class User {
 
     public User() {
     }
-    public User(Long  identityNumber,String name, String surname,String email,String password,String phoneNumber) {
+    public User(Long identityNumber,String name, String surname,String email,String password,String phoneNumber, String bloodType) {
         this.identityNumber=identityNumber;
         this.name = name;
         this.surname = surname;
         this.email=email;
         this.password=password;
         this.phoneNumber=phoneNumber;
+        this.bloodType= bloodType;
     }
 
     public Long getIdentityNumber() {

@@ -17,12 +17,23 @@ public class Department {
     @JoinColumn(name="hospital_id")
     private Hospital hospital;
     public Department(){};
+
+    public Department(String departmentName, Set<User> user){
+        this.departmentName = departmentName;
+        this.user = user;
+    };
+
+
     public String getDepartmentName() {
         return departmentName;
     }
 
     public void setDepartmentName(String departmentName) {
         this.departmentName = departmentName;
+    }
+
+    public Set<User> getUserList(){
+        return user;
     }
 
 }
