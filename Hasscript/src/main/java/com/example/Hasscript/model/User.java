@@ -23,6 +23,9 @@ public class User {
     private String phoneNumber;
     @Column(name="bloodType")
     private String bloodType;
+    @ManyToOne
+    @JoinColumn(name="department_id")
+    private Department department;
 
 
     public User() {
