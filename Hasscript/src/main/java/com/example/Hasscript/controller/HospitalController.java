@@ -2,6 +2,7 @@ package com.example.Hasscript.controller;
 
 import com.example.Hasscript.model.Department;
 import com.example.Hasscript.model.Hospital;
+import com.example.Hasscript.model.User;
 import com.example.Hasscript.repository.DepartmentRepository;
 import com.example.Hasscript.repository.HospitalRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,13 +10,19 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-@CrossOrigin(origins = "http://localhost:8081")
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Set;
+
+
 @RestController
 @RequestMapping("/api")
 public class HospitalController {
 
     @Autowired
     HospitalRepository hospitalRepository;
+    DepartmentRepository departmentRepository;
+
 
     @PostMapping("/hospital/create")
     public ResponseEntity<Hospital> createHospital(@RequestBody Hospital hospital) {
@@ -26,5 +33,19 @@ public class HospitalController {
         } catch (Exception e) {
             return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
         }
+    }
+    @GetMapping("/hospital/getAllHospitals")
+    public ResponseEntity<List<Hospital>> getAllUsers(@RequestParam(required = false) String title) {
+
+        List<Hospital> hospitals = new ArrayList<Hospital>();
+        hospitals = hospitalRepository.findAll();
+        return new ResponseEntity<>(hospitals, HttpStatus.OK);
+    }
+
+    @GetMapping("/hospital/{id}")
+    public ResponseEntity<Set<Department>> getByHospitalId(@PathVariable("id") long id) {
+        Hospital hospitalData = hospitalRepository.findById(id);
+
+        return new ResponseEntity<>(hospitalData.getDepartmentList(), HttpStatus.OK);
     }
 }

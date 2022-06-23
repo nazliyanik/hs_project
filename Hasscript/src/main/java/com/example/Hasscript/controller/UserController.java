@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @CrossOrigin(origins = "http://localhost:8081")
 @RestController
@@ -19,7 +20,7 @@ public class UserController {
     UserRepository userRepository;
 
     @GetMapping("/user/getAll")
-    public ResponseEntity<List<User>> getUserCreate(@RequestParam(required = false) String title) {
+    public ResponseEntity<List<User>> getAllUsers(@RequestParam(required = false) String title) {
 
             List<User> users = new ArrayList<User>();
             users = userRepository.findAll();
@@ -30,7 +31,7 @@ public class UserController {
     public ResponseEntity<User> createUser(@RequestBody User user) {
         try {
             User _user = userRepository
-                    .save(new User(user.getIdentityNumber(),user.getName(), user.getSurname(),user.getEmail(),user.getPassword(), user.getPhoneNumber(), user.getBloodType()));
+                    .save(new User(user.getIdentityNumber(),user.getName(), user.getSurname(),user.getEmail(),user.getPassword(), user.getPhoneNumber(), user.getBloodType(), user.getRole()));
             return new ResponseEntity<>(_user, HttpStatus.CREATED);
         } catch (Exception e) {
             return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
@@ -52,5 +53,9 @@ public class UserController {
             return new ResponseEntity<>(userData, HttpStatus.OK);
     }
 
-
+    @GetMapping("/user/getAllDoctors")
+    public ResponseEntity<List<User>> getAllDoctors(@RequestParam(required = false) String title) {
+        List<User> doctors = userRepository.findByRole("Doctor");
+        return new ResponseEntity<>(doctors, HttpStatus.OK);
+    }
 }

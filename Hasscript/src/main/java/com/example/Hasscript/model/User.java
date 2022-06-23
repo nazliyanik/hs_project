@@ -22,6 +22,9 @@ public class User {
     private String phoneNumber;
     @Column(name="bloodType")
     private String bloodType;
+
+    @Column(name="role")
+    private String role;
     @ManyToOne
     @JoinColumn(name="department_id")
     private Department department;
@@ -29,7 +32,7 @@ public class User {
 
     public User() {
     }
-    public User(Long identityNumber,String name, String surname,String email,String password,String phoneNumber, String bloodType) {
+    public User(Long identityNumber,String name, String surname,String email,String password,String phoneNumber, String bloodType, String role) {
         this.identityNumber=identityNumber;
         this.name = name;
         this.surname = surname;
@@ -37,6 +40,7 @@ public class User {
         this.password=password;
         this.phoneNumber=phoneNumber;
         this.bloodType= bloodType;
+        this.role = role;
     }
 
     public Long getIdentityNumber() {
@@ -46,11 +50,12 @@ public class User {
     public void setIdentityNumber(Long identityNumber) {
         this.identityNumber = identityNumber;
     }
+
     public String getName(){
-        return  name;
+        return name;
     }
-    public void setName(String Name){
-        this.name=name;
+    public void setName(){
+        this.name = name;
     }
 
     public String getSurname() {
@@ -91,5 +96,12 @@ public class User {
 
     public void setBloodType(String bloodType) {
         this.bloodType = bloodType;
+    }
+
+    public String getRole(){
+        return role;
+    }
+    public void setRole(String role){
+        this.role=role;
     }
 }

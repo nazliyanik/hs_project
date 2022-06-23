@@ -50,4 +50,8 @@ public class Hospital {
     public void setPhoneNumber(String phoneNumber){
         this.phoneNumber = phoneNumber;
     }
+
+    public Set<Department> getDepartmentList(){
+        return department;
+    }
 }

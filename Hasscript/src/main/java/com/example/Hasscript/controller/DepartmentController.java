@@ -41,4 +41,9 @@ public class DepartmentController{
             return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
+    /*@GetMapping("/department/{id}")
+    public ResponseEntity<List<Department>> getByDepartmentId(@PathVariable("id") long id) {
+        List<Department> departmentData = departmentRepository.findById(id);
+            return new ResponseEntity<>(departmentData, HttpStatus.OK);
+        }*/
 }
