@@ -1,6 +1,7 @@
 package com.example.Hasscript.controller;
 
 import com.example.Hasscript.model.Department;
+import com.example.Hasscript.model.Hospital;
 import com.example.Hasscript.model.User;
 import com.example.Hasscript.repository.DepartmentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,8 +10,9 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Set;
 
-@CrossOrigin(origins = "http://localhost:8081")
+
 @RestController
 @RequestMapping("/api")
 public class DepartmentController{
@@ -41,9 +43,10 @@ public class DepartmentController{
             return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
-    /*@GetMapping("/department/{id}")
-    public ResponseEntity<List<Department>> getByDepartmentId(@PathVariable("id") long id) {
-        List<Department> departmentData = departmentRepository.findById(id);
-            return new ResponseEntity<>(departmentData, HttpStatus.OK);
-        }*/
+    @GetMapping("/departmentDoctor/{id}")
+    public ResponseEntity<Set<User>> getDepartmentDoctors(@PathVariable("id") long id) {
+        Department departmentData = departmentRepository.findById(id);
+
+        return new ResponseEntity<>(departmentData.getUserList(), HttpStatus.OK);
+    }
 }

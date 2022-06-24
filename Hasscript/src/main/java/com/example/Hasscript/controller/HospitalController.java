@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 
 @RestController
@@ -47,5 +48,13 @@ public class HospitalController {
         Hospital hospitalData = hospitalRepository.findById(id);
 
         return new ResponseEntity<>(hospitalData.getDepartmentList(), HttpStatus.OK);
+    }
+
+    @GetMapping("/cityHospital/{id}")
+    public ResponseEntity<List<Hospital>> getCitiesHospital(@PathVariable("id") long id) {
+        List<Hospital> hospitalData = hospitalRepository.findAll();
+        List<Hospital> choosenHospital = hospitalData.stream().filter(data -> data.getCity().getId() == id).collect(Collectors.toList());
+
+        return new ResponseEntity<>(choosenHospital, HttpStatus.OK);
     }
 }

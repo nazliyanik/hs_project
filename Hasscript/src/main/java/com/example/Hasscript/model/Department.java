@@ -13,6 +13,23 @@ public class Department {
     private String  departmentName;
     @OneToMany (mappedBy = "department")
     private Set<User> user;
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public Set<User> getUser() {
+        return user;
+    }
+
+    public void setUser(Set<User> user) {
+        this.user = user;
+    }
+
     @ManyToOne
     @JoinColumn(name="hospital_id")
     private Hospital hospital;

@@ -11,4 +11,5 @@ import java.util.List;
 public interface HospitalRepository extends JpaRepository<Hospital,Long> {
     Hospital findById(long departmentId);
 
+
 }

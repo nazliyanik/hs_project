@@ -9,6 +9,7 @@ public class City{
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+
     @Column(name = "cityName")
     private String  cityName;
     @OneToMany (mappedBy = "city")
@@ -24,6 +25,14 @@ public class City{
     }
     public void setCityName(String cityName){
         this.cityName = cityName;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 }
 

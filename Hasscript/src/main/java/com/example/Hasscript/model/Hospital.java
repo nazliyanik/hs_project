@@ -23,6 +23,24 @@ public class Hospital {
     @JoinColumn(name="city_id")
     private City city;
 
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public City getCity() {
+        return city;
+    }
+
+    public void setCity(City city) {
+        this.city = city;
+    }
+
+
+
     public Hospital() {
     }
     public Hospital(String hospitalName, String email, String phoneNumber) {
